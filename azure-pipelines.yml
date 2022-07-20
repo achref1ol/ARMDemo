@@ -17,12 +17,15 @@ steps:
   displayName: 'dotnet build $(buildConfiguration)'
   
 - task: DotNetCoreCLI@2
-displayName: 'dotnet publish $(buildConfiguration)'
-inputs:
+  displayName: 'dotnet publish $(buildConfiguration)'
+  inputs:
     command: publish
     publishWebProjects: true
     arguments: '--configuration $(buildConfiguration) --output $(build.ArtifactStagingDirectory)'
     zipAfterPublish: True
+    
+- task: PublishBuildArtifacts@1
+  displayName: 'publish artifacts'
 
 
  
